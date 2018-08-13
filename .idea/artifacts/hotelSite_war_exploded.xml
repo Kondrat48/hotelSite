@@ -1,0 +1,38 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="hotelSite:war exploded">
+    <output-path>$PROJECT_DIR$/target/hotelSite</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="hotelSite" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-annotations-api:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-jasper:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.10" />
+          <element id="library" level="project" name="Maven: org.eclipse.jdt:ecj:3.13.102" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jasper:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-el-api:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-api:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util-scan:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jasper-el:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.10" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:9.0.10" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.2.5" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.12" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/hotelSite/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="hotelSite/web/Web" />
+    </root>
+  </artifact>
+</component>
