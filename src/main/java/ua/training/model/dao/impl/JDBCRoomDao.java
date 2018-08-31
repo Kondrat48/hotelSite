@@ -34,10 +34,13 @@ public class JDBCRoomDao implements RoomDao {
     }
 
     @Override
-    public List<Room> findAll() {
-        String query = "";
-
+    public List<Room> findAll(int currentPage, int recordsPerPage, String sortColumn) {
         return null;
+    }
+
+    @Override
+    public int getNumberOfRows() {
+        return 0;
     }
 
     @Override

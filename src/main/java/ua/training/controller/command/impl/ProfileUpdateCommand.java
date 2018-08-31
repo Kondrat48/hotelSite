@@ -47,38 +47,39 @@ public class ProfileUpdateCommand implements Command {
                 money = req.getParameter("money");
 
 
-        regexUtil.validate(errorMap, username ,"regexp.username","username");
-        regexUtil.validate(errorMap, old_password ,"regexp.password","password");
-        regexUtil.validate(errorMap, new_password ,"regexp.password","password");
-        regexUtil.validate(errorMap, name ,"regexp.name","name");
-        regexUtil.validate(errorMap, surname ,"regexp.surname","surname");
-        regexUtil.validate(errorMap, phone_number ,"regexp.phone_number","phone_number");
-        regexUtil.validate(errorMap, email ,"regexp.email","email");
-        regexUtil.validate(errorMap, old_email ,"regexp.email","email");
-        regexUtil.validate(errorMap, money ,"regexp.money","money");
-        if(errorMap.size()==0){
-            if(!userService.getUser(username).getPassword().equals(old_password)){
-                errorMap.put("errorold_password",messageManager.getProperty("incorrect.password"));
-                if (userService.checkLogin(username)&&!username.equals(old_username)) {
-                    errorMap.put("exist" + username, messageManager.getProperty("exist." + username));
-                }
-                if (userService.checkEmail(email)&&!old_email.equals(email)) {
-                    errorMap.put("exist" + email, messageManager.getProperty("exist." + email));
-                }
+        regexUtil.validate(errorMap, username, "regexp.username", "username");
+        regexUtil.validate(errorMap, old_password, "regexp.password", "password");
+        regexUtil.validate(errorMap, new_password, "regexp.password", "password");
+        regexUtil.validate(errorMap, name, "regexp.name", "name");
+        regexUtil.validate(errorMap, surname, "regexp.surname", "surname");
+        regexUtil.validate(errorMap, phone_number, "regexp.phone_number", "phone_number");
+        regexUtil.validate(errorMap, email, "regexp.email", "email");
+        regexUtil.validate(errorMap, old_email, "regexp.email", "email");
+        regexUtil.validate(errorMap, money, "regexp.money", "money");
+        if (errorMap.size() == 0) {
+            if (!userService.getUser(username).getPassword().equals(old_password)) {
+                errorMap.put("errorold_password", messageManager.getProperty("incorrect.password"));
             }
+            if (!username.equals(old_username) && userService.checkLogin(username)) {
+                errorMap.put("exist" + username, messageManager.getProperty("exist." + username));
+            }
+            if (!old_email.equals(email) && userService.checkEmail(email)) {
+                errorMap.put("exist" + email, messageManager.getProperty("exist." + email));
+            }
+
         }
 
         if (errorMap.size() > 0) {
             for (String error : errorMap.keySet()) {
                 req.setAttribute(error, errorMap.get(error));
             }
-            req.setAttribute("username",username);
-            req.setAttribute("name",name);
-            req.setAttribute("surname",surname);
-            req.setAttribute("phone_number",phone_number);
-            req.setAttribute("email",email);
-            req.setAttribute("role",userService.getUserRole(old_username).name().toLowerCase());
-            req.setAttribute("money",money);
+            req.setAttribute("username", username);
+            req.setAttribute("name", name);
+            req.setAttribute("surname", surname);
+            req.setAttribute("phone_number", phone_number);
+            req.setAttribute("email", email);
+            req.setAttribute("role", userService.getUserRole(old_username).name().toLowerCase());
+            req.setAttribute("money", money);
             return new PagePathManager().getProperty("path.page.profile");
         }
 
@@ -90,22 +91,22 @@ public class ProfileUpdateCommand implements Command {
                             .buildSurname(surname)
                             .buildEmail(email)
                             .buildPhone(phone_number)
-                            .buildMoney((long) (Double.valueOf(money)*100))
+                            .buildMoney((long) (Double.valueOf(money) * 100))
                             .getUser(),
                     old_username
             );
-            Map<String, HttpSession> sessionMap = (Map<String, HttpSession>)req.getSession().getServletContext().getAttribute("sessions");
+            Map<String, HttpSession> sessionMap = (Map<String, HttpSession>) req.getSession().getServletContext().getAttribute("sessions");
             sessionMap.remove(old_username);
-            req.getSession().setAttribute("username",username);
-            sessionMap.put(username,req.getSession());
-        } catch (UnsuccessfulSqlOperationException e){
-            req.setAttribute("username",username);
-            req.setAttribute("name",name);
-            req.setAttribute("surname",surname);
-            req.setAttribute("phone_number",phone_number);
-            req.setAttribute("email",email);
-            req.setAttribute("role",userService.getUserRole(old_username).name().toLowerCase());
-            req.setAttribute("money",money);
+            req.getSession().setAttribute("username", username);
+            sessionMap.put(username, req.getSession());
+        } catch (UnsuccessfulSqlOperationException e) {
+            req.setAttribute("username", username);
+            req.setAttribute("name", name);
+            req.setAttribute("surname", surname);
+            req.setAttribute("phone_number", phone_number);
+            req.setAttribute("email", email);
+            req.setAttribute("role", userService.getUserRole(old_username).name().toLowerCase());
+            req.setAttribute("money", money);
             return new PagePathManager().getProperty("path.page.profile");
         }
 

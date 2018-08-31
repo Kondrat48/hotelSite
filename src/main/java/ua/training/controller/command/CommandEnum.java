@@ -14,9 +14,10 @@ public enum CommandEnum {
     USER_MANAGEMENT_PAGE(new UserManagementPageCommand()),
     SESSION_MANAGEMENT_PAGE(new SessionManagementPageCommand()),
     EDIT_USER_PAGE(new EditUserPageCommand()),
+    PROFILE_UPDATE(new ProfileUpdateCommand()),
+    EDIT_USER(new EditUserCommand()),
     LOGOUT(new LogoutCommand()),
     REGISTER(new RegisterCommand()),
-    PROFILE_UPDATE(new ProfileUpdateCommand()),
     LOGIN(new LoginCommand());
 
     Command command;

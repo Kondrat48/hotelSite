@@ -5,6 +5,8 @@ import ua.training.model.dao.UserDao;
 import ua.training.model.entity.User;
 import ua.training.model.exception.UnsuccessfulSqlOperationException;
 
+import java.util.List;
+
 public class UserService {
     private UserDao userDao;
 
@@ -44,7 +46,14 @@ public class UserService {
     public void updateUser(User user, String old_username) throws UnsuccessfulSqlOperationException {
         User oldUser = userDao.getByLogin(old_username);
         user.setId(oldUser.getId());
-        user.setRole(oldUser.getRole());
+        if(user.getRole()==null)user.setRole(oldUser.getRole());
         userDao.update(user);
+    }
+
+    public List<User> getUserList(int currentPage, int recordsPerPage, String sortColumn){
+        return userDao.findAll(currentPage,recordsPerPage,sortColumn);
+    }
+    public int getNumberOfUsers(){
+        return userDao.getNumberOfRows();
     }
 }

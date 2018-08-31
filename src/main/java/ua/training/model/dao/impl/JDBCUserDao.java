@@ -4,6 +4,7 @@ import ua.training.model.dao.UserDao;
 import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.entity.User;
 import ua.training.model.exception.WrongDataException;
+import ua.training.model.service.resourceManager.DBColumnManager;
 import ua.training.model.service.resourceManager.DBQueryManager;
 
 import java.sql.*;
@@ -39,10 +40,41 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll(int currentPage, int recordsPerPage, String sortColumn) {
+        DBQueryManager manager = new DBQueryManager();
+        UserMapper mapper = new UserMapper();
+        List<User> users = new ArrayList<>();
 
-        return null;
+        int start = currentPage * recordsPerPage - recordsPerPage;
+
+        try(PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.select.users.with_pagination_and_sort"))) {
+            st.setString(1,sortColumn);
+            st.setInt(2,start);
+            st.setInt(3,recordsPerPage);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                users.add(mapper.extractFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
+
+    @Override
+    public int getNumberOfRows() {
+        DBQueryManager manager = new DBQueryManager();
+        try (PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.count.users"))){
+             ResultSet rs = st.executeQuery();
+             if (rs.next()){
+                 return rs.getInt("total");
+             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
     @Override
     public void update(User entity) throws UnsupportedOperationException{
@@ -112,31 +144,24 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean loginIsExist(String login) {
-        DBQueryManager manager = new DBQueryManager();
-        try (PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.count.users.by_username"))) {
-            st.setString(1, login);
-            ResultSet rs = st.executeQuery();
-            int count = 0;
-            while (rs.next()){
-                count = rs.getInt("total");
-            }
-            return count>0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return paramIsExist(login, "sql.count.users.by_username");
     }
 
     @Override
     public boolean emailIsExist(String email) {
+        return paramIsExist(email, "sql.count.users.by_email");
+    }
+
+    private boolean paramIsExist(String param, String paramSqlProperty) {
         DBQueryManager manager = new DBQueryManager();
-        try (PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.count.users.by_email"))) {
-            st.setString(1, email);
+        try (PreparedStatement st = connection.prepareStatement(manager.getProperty(paramSqlProperty))) {
+            st.setString(1, param);
             ResultSet rs = st.executeQuery();
             int count = 0;
-            while (rs.next()){
+            while (rs.next()) {
                 count = rs.getInt("total");
             }
-            return count>0;
+            return count > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

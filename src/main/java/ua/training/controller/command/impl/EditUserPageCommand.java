@@ -35,8 +35,8 @@ public class EditUserPageCommand implements Command {
             req.setAttribute("surname",user.getSurname());
             req.setAttribute("phone_number",user.getPhoneNumber());
             req.setAttribute("email",user.getEmail());
-            req.setAttribute("role",user.getRole());
-            req.setAttribute("money",user.getMoney());
+            req.setAttribute("role",user.getRole().name().toLowerCase());
+            req.setAttribute("money",user.getMoney()/100d);
             return manager.getProperty("path.page.edit_user");
         }
         return "redirect:"+manager.getProperty("path.page.index");

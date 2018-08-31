@@ -167,6 +167,12 @@ public class User {
         public int getSignificance() {
             return significance;
         }
+
+
+        @Override
+        public String toString() {
+            return name().toLowerCase();
+        }
     }
 
     public static class Builder {

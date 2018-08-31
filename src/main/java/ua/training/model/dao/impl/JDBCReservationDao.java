@@ -30,10 +30,13 @@ public class JDBCReservationDao implements ReservationDao {
     }
 
     @Override
-    public List<Reservation> findAll() {
-        String query = "";
-
+    public List<Reservation> findAll(int currentPage, int recordsPerPage, String sortColumn) {
         return null;
+    }
+
+    @Override
+    public int getNumberOfRows() {
+        return 0;
     }
 
     @Override
