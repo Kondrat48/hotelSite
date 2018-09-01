@@ -11,31 +11,47 @@
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="<c:url value="../../css/login.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../css/bootstrap.css"/>"/>
+    <meta charset="utf-8"/>
+    <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--%>
+          <%--integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--%>
 
 
     <title>Login</title>
 </head>
-<body>
+<body id="LoginForm">
 <jsp:include page="../menu.jsp"/>
+<div class="container">
+    <fmt:bundle basename="page_strings" prefix="string.">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2><fmt:message key="singin"/></h2>
 
-<fmt:bundle basename="page_strings" prefix="string.">
-    <form class="form-username" role="form" method="post" action="${pageContext.request.contextPath}/app/login">
-        <h2 class="form-heading"><fmt:message key="singin"/></h2>
-        <input type="text" name="username" class="form-control" placeholder="<fmt:message key="username"/>" value="" required autofocus>
-        ${wrongusername}
-        <input type="password" name="password" class="form-control" placeholder="<fmt:message key="password"/>" value="" required>
-        ${wrongpassword}
-        ${errorLogin}
-        <input type="submit" value="<fmt:message key="login"/> ">
-    </form>
-</fmt:bundle>
+                <form id="Login" class="form-username" role="form" method="post"
+                      action="${pageContext.request.contextPath}/app/login">
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control"
+                               placeholder="<fmt:message key="username"/>"
+                               value="" required autofocus>
+                            ${wrongusername}
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control"
+                               placeholder="<fmt:message key="password"/>" value="" required>
+                            ${wrongpassword}
+                            ${errorLogin}
+                    </div>
 
+                    <input class="btn btn-primary" type="submit" value="<fmt:message key="login"/> ">
+                </form>
+            </div>
+        </div>
+    </div>
+    </fmt:bundle>
+</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </body>
 </html>

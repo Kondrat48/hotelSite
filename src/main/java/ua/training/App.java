@@ -15,6 +15,7 @@ public class App {
 //        System.out.println(val/100d);
 
         Pattern pattern = Pattern.compile("[A-Za-z]{0,45}");
+        
     }
 }
 

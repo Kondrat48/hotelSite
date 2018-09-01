@@ -13,6 +13,6 @@ public class LogoutCommand implements Command {
         if(session!=null){
             session.invalidate();
         }
-        return "redirect:"+new PagePathManager().getProperty("path.page.index");
+        return "redirect:/app/default";
     }
 }

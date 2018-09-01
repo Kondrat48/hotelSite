@@ -23,7 +23,7 @@ public class ProfileUpdateCommand implements Command {
                 User.Role.BANNED,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )) {
-            return "redirect:" + manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
 
@@ -95,7 +95,7 @@ public class ProfileUpdateCommand implements Command {
                             .getUser(),
                     old_username
             );
-            Map<String, HttpSession> sessionMap = (Map<String, HttpSession>) req.getSession().getServletContext().getAttribute("sessions");
+            Map<String, HttpSession> sessionMap = (HashMap<String, HttpSession>) req.getSession().getServletContext().getAttribute("sessions");
             sessionMap.remove(old_username);
             req.getSession().setAttribute("username", username);
             sessionMap.put(username, req.getSession());

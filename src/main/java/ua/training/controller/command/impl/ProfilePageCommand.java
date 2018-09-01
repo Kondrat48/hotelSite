@@ -16,7 +16,7 @@ public class ProfilePageCommand implements Command {
                 User.Role.BANNED,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )){
-            return "redirect:"+manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
         UserService service = new UserService();
         User user = service.getUser((String) req.getSession().getAttribute("username"));

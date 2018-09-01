@@ -20,7 +20,7 @@ public class LoginCommand implements Command {
         PagePathManager manager = new PagePathManager();
 
         if (!req.getSession().getAttribute("role").equals(User.Role.GUEST.name().toLowerCase())) {
-            return "redirect:" + manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         Locale locale = new Locale((String) req.getSession().getAttribute("language"));
@@ -41,7 +41,7 @@ public class LoginCommand implements Command {
             for (String error : errorMap.keySet()) {
                 req.setAttribute(error, errorMap.get(error));
             }
-            return new PagePathManager().getProperty("path.page.login");
+            return manager.getProperty("path.page.login");
         }
 
 
@@ -57,10 +57,11 @@ public class LoginCommand implements Command {
                 sessionMap.get(req.getSession().getAttribute(username)).invalidate();
             }
             sessionMap.put(req.getParameter(username), req.getSession());
-            return "redirect:" + manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         req.setAttribute("errorLogin", new MessageManager(locale).getProperty("error.login"));
+        req.setAttribute("username",username);
         return manager.getProperty("path.page.login");
     }
 }

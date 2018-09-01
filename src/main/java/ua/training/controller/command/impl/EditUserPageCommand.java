@@ -19,7 +19,7 @@ public class EditUserPageCommand implements Command {
                 User.Role.ADMIN,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )){
-            return "redirect:"+manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         UserService userService = new UserService();
@@ -39,6 +39,6 @@ public class EditUserPageCommand implements Command {
             req.setAttribute("money",user.getMoney()/100d);
             return manager.getProperty("path.page.edit_user");
         }
-        return "redirect:"+manager.getProperty("path.page.index");
+        return "redirect:/app/default";
     }
 }

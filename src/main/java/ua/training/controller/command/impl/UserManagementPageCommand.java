@@ -18,7 +18,7 @@ public class UserManagementPageCommand implements Command {
                 User.Role.ADMIN,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )){
-            return "redirect:"+manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         String current_page = req.getParameter("current_page");

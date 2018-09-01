@@ -16,7 +16,7 @@ public class RegisterCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         if (!req.getSession().getAttribute("role").equals(User.Role.GUEST.name().toLowerCase())) {
-            return "redirect:" + new PagePathManager().getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         Locale locale = new Locale((String) req.getSession().getAttribute("language"));

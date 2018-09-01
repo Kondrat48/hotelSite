@@ -11,7 +11,7 @@ public class LoginPageCommand implements Command {
     public String execute(HttpServletRequest req) {
         PagePathManager manager = new PagePathManager();
         if (!req.getSession().getAttribute("role").equals(User.Role.GUEST.name().toLowerCase())) {
-            return "redirect:" + manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
         return manager.getProperty("path.page.login");
     }

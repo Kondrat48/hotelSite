@@ -15,7 +15,7 @@ public class ConfirmationPageCommand implements Command {
                 User.Role.MANAGER,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )){
-            return "redirect:"+manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
         return manager.getProperty("path.page.confirmation_management");
     }

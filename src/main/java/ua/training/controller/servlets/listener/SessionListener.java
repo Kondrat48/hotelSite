@@ -24,8 +24,8 @@ public class SessionListener implements ServletContextListener,
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
-        ((Map<String, HttpSession>) se.getSession().getServletContext().getAttribute("sessions")).remove(
-                (String) se.getSession().getAttribute("username")
+        ((HashMap<String, HttpSession>) se.getSession().getServletContext().getAttribute("sessions")).remove(
+                se.getSession().getAttribute("username").toString()
         );
     }
 

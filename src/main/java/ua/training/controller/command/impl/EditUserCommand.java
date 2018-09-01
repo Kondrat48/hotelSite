@@ -23,7 +23,7 @@ public class EditUserCommand implements Command {
                 User.Role.ADMIN,
                 User.Role.valueOf(((String) req.getSession().getAttribute("role")).toUpperCase())
         )) {
-            return "redirect:" + manager.getProperty("path.page.index");
+            return "redirect:/app/default";
         }
 
         Locale locale = new Locale(req.getSession().getAttribute("language").toString());
