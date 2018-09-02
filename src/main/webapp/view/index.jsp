@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-
-    <title>Index</title>
+    <link rel="stylesheet" href="<c:url value="../css/bootstrap.css"/>"/>
 </head>
 <body>
 <%--<c:out value="${sessionScope.role}"/>--%>

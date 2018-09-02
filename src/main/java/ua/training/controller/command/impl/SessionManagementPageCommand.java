@@ -41,7 +41,14 @@ public class SessionManagementPageCommand implements Command {
             }
         }
         for (HttpSession session : sessionMap.values()) {
-            sessionDtos.add(new SessionDto(session, req.getSession().getAttribute("language").toString()));
+            sessionDtos.add(
+                    new SessionDto(
+                            session,
+                            req.getParameter("language") == null?
+                                    req.getSession().getAttribute("language").toString() :
+                                    req.getParameter("language")
+                    )
+            );
         }
         sessionDtos.sort((a, b) -> {
             return sortColumn==null||sortColumn.equals("username") ? a.getUsername().compareTo(b.getUsername()) :

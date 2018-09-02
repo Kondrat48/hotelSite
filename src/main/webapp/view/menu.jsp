@@ -16,6 +16,9 @@
 <html>
 
 
+
+
+
 <c:set var="language"
        value="${not empty param.language ?
        param.language : not empty language ?
@@ -24,7 +27,16 @@
        scope="session"/>
 <fmt:setLocale value="${language}" scope="session"/>
 
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="<c:url value="/app/"/>">Bron</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+        </ul>
+    </div>
 
+
+</nav>
 <form <%--onsubmit="location.reload(true)"--%> action="${requestScope.javax.servlet.forward.request_uri}">
     <select id="language" name="language" onchange="submit()">
         <option value="en_US" ${language == 'en_US' ? 'selected' : ''}>English</option>

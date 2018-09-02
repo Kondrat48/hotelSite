@@ -11,8 +11,8 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="<c:url value="../../css/login.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="../../css/bootstrap.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../../css/login.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../../css/bootstrap.css"/>"/>
     <meta charset="utf-8"/>
     <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--%>
           <%--integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--%>
@@ -20,8 +20,8 @@
 
     <title>Login</title>
 </head>
-<body id="LoginForm">
-<jsp:include page="../menu.jsp"/>
+<body>
+<jsp:include page="../../../view/menu.jsp"/>
 <div class="container">
     <fmt:bundle basename="page_strings" prefix="string.">
     <div class="login-form">

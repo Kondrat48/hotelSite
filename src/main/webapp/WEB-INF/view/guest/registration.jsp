@@ -1,10 +1,10 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 31-Aug-18
-  Time: 06:40
+  Date: 17-Aug-18
+  Time: 11:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,16 +13,11 @@
 
 </head>
 <body>
-<jsp:include page="../menu.jsp"/>
-
+<jsp:include page="../../../view/menu.jsp"/>
 
 <fmt:bundle basename="page_strings" prefix="string.">
-    <form class="form-login" role="form" method="post" action="${pageContext.request.contextPath}/app/edit_user">
-        <h2 class="form-heading"><fmt:message key="user_editing"/></h2>
-        <c:set var="old_username" value="${username}"/>
-        <c:set var="old_email" value="${email}"/>
-        <input type="hidden" name="old_username" value="${username}">
-        <input type="hidden" name="old_email" value="${email}">
+    <form class="form-login" role="form" method="post" action="${pageContext.request.contextPath}/app/register">
+        <h2 class="form-heading"><fmt:message key="registration"/></h2>
         <table>
             <tr>
                 <td>
@@ -80,35 +75,11 @@
                         ${wrongemail}
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <fmt:message key="money"/>:
-                </td>
-                <td>
-                    <input type="text" name="money" class="form-control" value="${money}" required>
-                        ${wrongmoney}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <fmt:message key="role"/>:
-                </td>
-                <td>
-                    <select name="role">
-                        <option value="user" ${role == 'user'?'selected':''}><fmt:message key="role.user"/></option>
-                        <option value="banned" ${role == 'banned'?'selected':''}><fmt:message key="role.banned"/></option>
-                        <option value="manager" ${role == 'manager'?'selected':''}><fmt:message key="role.manager"/></option>
-                        <option value="admin" ${role == 'admin'?'selected':''}><fmt:message key="role.admin"/></option>
-                    </select>
-                        ${wrongrole}
-                </td>
-            </tr>
         </table>
         <br>
-        <input type="submit" value="<fmt:message key="update"/>">
-    </form>
+        <input type="submit" value="<fmt:message key="register"/>">
+        </form>
 </fmt:bundle>
-
 
 </body>
 </html>

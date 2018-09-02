@@ -13,7 +13,7 @@ public class ConnectionPoolHolder {
                 if (dataSource == null) {
                     BasicDataSource ds = new BasicDataSource();
                     ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-                    ds.setUrl("jdbc:mysql://localhost:3306/hoteldb?useUnicode=true&maxReconnects=20&autoReconnectForPools=true&autoReconnect=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
+                    ds.setUrl("jdbc:mysql://localhost:3306/hoteldb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false");
                     ds.setUsername("root");
                     ds.setPassword("4856");
                     ds.setMinIdle(5);

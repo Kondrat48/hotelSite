@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<jsp:include page="../menu.jsp"/>
+<jsp:include page="../../../view/menu.jsp"/>
 
 <fmt:bundle basename="page_strings" prefix="string.">
 

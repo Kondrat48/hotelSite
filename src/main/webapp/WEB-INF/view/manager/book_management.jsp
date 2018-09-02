@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<jsp:include page="../menu.jsp"/>
+<jsp:include page="../../../view/menu.jsp"/>
 
 
 
