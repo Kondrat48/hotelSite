@@ -1,7 +1,6 @@
-<%@ page import="java.util.Locale" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -27,15 +26,14 @@
        scope="session"/>
 <fmt:setLocale value="${language}" scope="session"/>
 <fmt:bundle basename="menu_items" prefix="item.">
-    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bg-dark">
+    <header class="align-middle navbar navbar-expand navbar-dark flex-column flex-md-row bg-dark align-items-center">
         <a class="navbar-brand mr-0 mr-md-2" href="<c:url value="/app/"/>">Bron'</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav flex-row">
+        <div class="collapse navbar-collapse align-middle" id="navbarSupportedContent">
+            <ul class="navbar-nav flex-row align-items-center">
                 <c:choose>
                     <c:when test="${sessionScope.role=='guest'}">
                         <li class="nav-item"><a class="nav-link" href="<c:url value="/app/login_page"/>"><fmt:message
-                                key="login"/></a>
-                        </li>
+                                key="login"/></a></li>
                         <li class="nav-item"><a class="nav-link" href="<c:url value="/app/register_page"/>"><fmt:message
                                 key="register"/></a></li>
                     </c:when>
@@ -61,6 +59,9 @@
                                         <a class="dropdown-item"
                                            href="<c:url value="/app/room_confirmation_page"/>"><fmt:message
                                                 key="confirmation_management"/></a>
+                                        <a class="dropdown-item"
+                                           href="<c:url value="/app/user_management_page"/>"><fmt:message
+                                                key="user_management"/></a>
                                     </div>
                                 </li>
                             </c:if>
@@ -73,9 +74,6 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="administration">
                                         <a class="dropdown-item"
-                                           href="<c:url value="/app/user_management_page"/>"><fmt:message
-                                                key="user_management"/></a>
-                                        <a class="dropdown-item"
                                            href="<c:url value="/app/session_management_page"/>"><fmt:message
                                                 key="session_management"/></a>
                                     </div>
@@ -87,13 +85,13 @@
 
             </ul>
 
-            <ul class="navbar-nav flex-row ml-md-auto <%--d-none --%>d-md-flex">
+            <ul class="navbar-nav flex-row ml-md-auto <%--d-none --%>d-md-flex align-items-center">
 
                 <c:choose>
                     <c:when test="${sessionScope.role=='guest'}">
                         <fmt:bundle basename="page_strings" prefix="string.">
-                            <li class="nav-item"><label class="navbar-text"><fmt:message
-                                    key="role.guest"/></label></li>
+                            <li class="nav-item align-items-center"><span class="navbar-text "><fmt:message
+                                    key="role.guest"/></span></li>
                         </fmt:bundle>
                     </c:when>
                     <c:otherwise>
@@ -120,9 +118,9 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languages-btn">
                         <a class="dropdown-item${language == 'en_US' ? ' active' : ''}"
-                           href="${requestScope.javax.servlet.forward.request_uri}?language=en_US">English</a>
+                           href="${requestScope.javax.servlet.forward.query_string}${fn:contains(requestScope.javax.servlet.forward.query_string, '?')?'&':'?'}language=en_US">English</a>
                         <a class="dropdown-item${language == 'uk_UA' ? ' active' : ''}"
-                           href="${requestScope.javax.servlet.forward.request_uri}?language=uk_UA">Ukrainian</a>
+                           href="${requestScope.javax.servlet.forward.query_string}${fn:contains(requestScope.javax.servlet.forward.query_string, '?')?'&':'?'}language=uk_UA">Ukrainian</a>
                     </div>
                 </li>
             </ul>

@@ -1,8 +1,3 @@
-.nav-item {
-    /*margin: auto;*/
-    /*width: 50%;*/
-    /*padding: 10px;*/
-}
 .form-logout {
     margin: 0;
     padding: 0;
@@ -11,3 +6,10 @@
     margin: 0;
     padding: 0;
 }
+/*.navbar-fixed-top {*/
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*left: 0;*/
+    /*top: 0;*/
+
+/*}*/

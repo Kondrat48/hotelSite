@@ -50,10 +50,14 @@ public class UserService {
         userDao.update(user);
     }
 
-    public List<User> getUserList(int currentPage, int recordsPerPage, String sortColumn){
-        return userDao.findAll(currentPage,recordsPerPage,sortColumn);
+    public List<User> getUserList(int currentPage, int recordsPerPage, String sortColumn, String searchParam, String searchField){
+        return userDao.findAll(currentPage,recordsPerPage,sortColumn,searchParam,searchField);
     }
-    public int getNumberOfUsers(){
-        return userDao.getNumberOfRows();
+    public int getNumberOfUsers(String search_param, String search_field){
+        return userDao.getNumberOfRows(search_param, search_field);
+    }
+
+    public void deleteUser(String username) throws NullPointerException, UnsuccessfulSqlOperationException{
+        userDao.delete(username);
     }
 }

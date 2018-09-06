@@ -9,6 +9,7 @@ public abstract class DaoFactory {
 
     public abstract ReservationDao createReservationDao();
     public abstract RoomDao createRoomDao();
+    public abstract RoomTypeDao createRoomTypeDao();
     public abstract UserDao createUserDao();
 
     public static DaoFactory getInstance(){

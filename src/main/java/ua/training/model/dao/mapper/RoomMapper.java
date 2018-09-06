@@ -9,14 +9,9 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RoomMapper implements ObjectMapper<Room> {
-    private final Locale locale;
-
-    public RoomMapper(Locale locale) {
-        this.locale = locale;
-    }
     @Override
     public Room extractFromResultSet(ResultSet rs) throws SQLException {
-        DBColumnManager manager = new DBColumnManager(locale);
+        DBColumnManager manager = new DBColumnManager();
         return new Room.Builder()
                 .buildId(rs.getInt(manager.getProperty("room.id")))
                 .getRoom();

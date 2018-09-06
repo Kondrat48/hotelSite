@@ -8,15 +8,21 @@ import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Map;
 
-public class RoomClassMapper implements ObjectMapper<RoomType> {
+public class RoomTypeMapper implements ObjectMapper<RoomType> {
+
+    private final Locale locale;
+
+    public RoomTypeMapper(Locale locale) {
+        this.locale = locale;
+    }
 
     @Override
     public RoomType extractFromResultSet(ResultSet rs) throws SQLException {
-        DBColumnManager manager = new DBColumnManager();
+        DBColumnManager manager = new DBColumnManager(locale);
         return new RoomType.Builder()
                 .buildId(rs.getInt(manager.getProperty("room_type.id")))
                 .buildClassName(rs.getString(manager.getProperty("room_type.name")))
-                .buildDailyPrice(rs.getDouble(manager.getProperty("room_type.price_per_night")))
+                .buildDailyPrice(rs.getLong(manager.getProperty("room_type.price_per_night")))
                 .buildDescription(rs.getString(manager.getProperty("room_type.description")))
                 .buildNumberOfPlaces(rs.getInt(manager.getProperty("room_type.places")))
                 .buildImagePath(rs.getString(manager.getProperty("room_type.image_path")))

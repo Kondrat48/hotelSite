@@ -6,9 +6,9 @@ public class RoomType {
     private RoomType(){}
     private int id,
             numberOfPlaces;
-    private double dailyPrice;
+    private long dailyPrice;
     private String imagePath,
-            className,
+            typeName,
             description;
 
     @Override
@@ -20,13 +20,13 @@ public class RoomType {
                 getNumberOfPlaces() == roomType.getNumberOfPlaces() &&
                 Double.compare(roomType.getDailyPrice(), getDailyPrice()) == 0 &&
                 Objects.equals(getImagePath(), roomType.getImagePath()) &&
-                Objects.equals(getClassName(), roomType.getClassName()) &&
+                Objects.equals(getTypeName(), roomType.getTypeName()) &&
                 Objects.equals(getDescription(), roomType.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNumberOfPlaces(), getDailyPrice(), getImagePath(), getClassName(), getDescription());
+        return Objects.hash(getId(), getNumberOfPlaces(), getDailyPrice(), getImagePath(), getTypeName(), getDescription());
     }
 
     public int getId() {
@@ -37,11 +37,11 @@ public class RoomType {
         this.id = id;
     }
 
-    public double getDailyPrice() {
+    public long getDailyPrice() {
         return dailyPrice;
     }
 
-    public void setDailyPrice(double dailyPrice) {
+    public void setDailyPrice(long dailyPrice) {
         this.dailyPrice = dailyPrice;
     }
 
@@ -61,12 +61,12 @@ public class RoomType {
         this.imagePath = imagePath;
     }
 
-    public String getClassName() {
-        return className;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getDescription() {
@@ -83,9 +83,9 @@ public class RoomType {
 
         private int id,
                 numberOfPlaces;
-        private double dailyPrice;
+        private long dailyPrice;
         private String imagePath,
-                className,
+                typeName,
                 description;
 
 
@@ -94,7 +94,7 @@ public class RoomType {
             return this;
         }
 
-        public Builder buildDailyPrice(double dailyPrice) {
+        public Builder buildDailyPrice(long dailyPrice) {
             this.dailyPrice = dailyPrice;
             return this;
         }
@@ -110,7 +110,7 @@ public class RoomType {
         }
 
         public Builder buildClassName(String className) {
-            this.className = className;
+            this.typeName = className;
             return this;
         }
 
@@ -125,10 +125,9 @@ public class RoomType {
             roomType.setDailyPrice(dailyPrice);
             roomType.setNumberOfPlaces(numberOfPlaces);
             roomType.setImagePath(imagePath);
-            roomType.setClassName(className);
+            roomType.setTypeName(typeName);
             roomType.setDescription(description);
             return roomType;
-
         }
     }
 }

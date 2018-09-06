@@ -1,9 +1,6 @@
 package ua.training.model.dao.impl;
 
-import ua.training.model.dao.DaoFactory;
-import ua.training.model.dao.ReservationDao;
-import ua.training.model.dao.RoomDao;
-import ua.training.model.dao.UserDao;
+import ua.training.model.dao.*;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -33,6 +30,11 @@ public class JDBCDaoFactory extends DaoFactory {
         return new JDBCRoomDao(getConnection());
     }
 
+    @Override
+    public RoomTypeDao createRoomTypeDao() {
+        return new JDBCRoomTypeDao(getConnection());
+    }
+    
     @Override
     public UserDao createUserDao() {
         return new JDBCUserDao(getConnection());

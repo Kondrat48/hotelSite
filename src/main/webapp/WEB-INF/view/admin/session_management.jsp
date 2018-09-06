@@ -10,6 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <fmt:bundle basename="page_strings" prefix="string.">
+        <title><fmt:message key="sessing_management_title"></fmt:message></title>
+    </fmt:bundle>
+    <link rel="stylesheet" href="../../../css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -45,73 +49,43 @@
         </tr>
         <c:forEach var="sessionDto" items="${requestScope.sessions}">
             <tr>
-                <td>
+                <td class="align-middle">
                     <c:if test="${sessionDto.role!='guest'}">
-                        <form action="/app/edit_user_page">
-                            <input type="hidden" name="username" value="${sessionDto.username}">
-                            <input class="btn btn-link" type="submit" value="${sessionDto.username}">
-                        </form>
+                        <a class="table-button-form"
+                           href="/app/user_management?search_field=username&search_param=${sessionDto.username}">${sessionDto.username}
+                        </a>
                     </c:if>
                     <c:if test="${sessionDto.role=='guest'}">
                         ${sessionDto.username}
                     </c:if>
                 </td>
-                <td>
+                <td class="align-middle">
                     <fmt:message key="role.${sessionDto.role}"/>
                 </td>
-                <td>
+                <td class="align-middle">
                         ${sessionDto.creationTime}
                 </td>
-                <td>
+                <td class="align-middle">
                         ${sessionDto.lastActivity}
                 </td>
-                <td>
+                <td class="align-middle">
                         ${sessionDto.language}
                 </td>
-                <td>
+                <td class="align-middle">
                         ${sessionDto.sessionId}
                 </td>
-                <td>
-                    <form action="/app/session_management_page?records_per_page=${records_per_page}&current_page=${current_page}&sort_column=${sort_column}">
-                        <input type="hidden" name="session_to_remove" value="${sessionDto.username}">
-                        <input class="btn btn-danger" type="submit" value="<fmt:message key="invalidate"/>">
-                    </form>
+                <td class="align-middle">
+                    <a class="btn btn-danger"
+                       href="/app/session_management_page?records_per_page=${records_per_page}&current_page=${current_page}&sort_column=${sort_column}&session_to_remove=${sessionDto.username}">
+                        <fmt:message key="invalidate"/>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
     </table>
 
-    <ul class="pagination">
-        <c:if test="${current_page != 1}">
-            <li class="page-item"><a class="page-link"
-                                     href="/app/session_management_page?records_per_page=${records_per_page}&current_page=${current_page-1}&sort_column=${sort_column}">Previous</a>
-            </li>
-        </c:if>
-
-        <c:forEach begin="1" end="${no_of_pages}" var="i">
-            <c:choose>
-                <c:when test="${current_page eq i}">
-                    <li class="page-item active"><a class="page-link">
-                            ${i} <span class="sr-only">(current)</span></a>
-                    </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item"><a class="page-link"
-                                             href="/app/session_management_page?records_per_page=${records_per_page}&current_page=${i}&sort_column=${sort_column}">${i}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-
-        <c:if test="${current_page lt no_of_pages}">
-            <li class="page-item"><a class="page-link"
-                                     href="/app/session_management_page?records_per_page=${records_per_page}&current_page=${current_page+1}&sort_column=${sort_column}">Next</a>
-            </li>
-        </c:if>
-    </ul>
+    <c:import url="../pagination_footer.jsp"/>
 </fmt:bundle>
-
-
 
 
 </body>
