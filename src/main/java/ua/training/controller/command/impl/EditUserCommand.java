@@ -26,7 +26,9 @@ public class EditUserCommand implements Command {
             return "redirect:/app/default";
         }
 
-        Locale locale = new Locale(req.getSession().getAttribute("language").toString());
+        Locale locale = new Locale(req.getParameter("language") == null ?
+                req.getSession().getAttribute("language").toString() :
+                req.getParameter("language"));
 
         String old_username = req.getParameter("old_username"),
                 username = req.getParameter("username"),

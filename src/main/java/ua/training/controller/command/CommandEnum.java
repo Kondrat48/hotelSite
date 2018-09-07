@@ -15,16 +15,16 @@ public enum CommandEnum {
     SESSION_MANAGEMENT_PAGE(new SessionManagementPageCommand()),
     EDIT_USER_PAGE(new EditUserPageCommand()),
     VIEW_USER_PAGE(new ViewUserPageCommand()),
-    EDIT_ROOM_PAGE(new EditRoomPageCommand()),//TODO
-    CREATE_ROOM_PAGE(new CreateRoomPageCommand()),//TODO
+    EDIT_ROOM_PAGE(new EditRoomPageCommand()),
+    CREATE_ROOM_PAGE(new CreateRoomPageCommand()),
     EDIT_ROOM_TYPE_PAGE(new EditRoomTypePageCommand()),//TODO
     CREATE_ROOM_TYPE_PAGE(new CreateRoomTypePageCommand()),//TODO
     USER_BOOKINGS_PAGE(new UserBookingsPageCommand()),//TODO
-    EDIT_ROOM(new EditRoomCommand()),//TODO
-    CREATE_ROOM(new CreateRoomCommand()),//TODO
-    DELETE_ROOM(new DeleteRoomCommand()),//TODO
+    EDIT_ROOM(new EditRoomCommand()),
+    CREATE_ROOM(new CreateRoomCommand()),
+    DELETE_ROOM(new DeleteRoomCommand()),
     EDIT_ROOM_TYPE(new EditRoomTypeCommand()),//TODO
-    CREATE_ROOM_TYPE(new CreateRoonTypeCommand()),//TODO
+    CREATE_ROOM_TYPE(new CreateRoomTypeCommand()),//TODO
     DELETE_ROOM_TYPE(new DeleteRoomTypeCommand()),//TODO
     CREATE_CONFIRMATION(new CreateConfirmationCommand()),//TODO
     DELETE_CONFIRMATION(new DeleteConfirmationCommand()),//TODO

@@ -68,7 +68,7 @@ public class RoomManagementPageCommand implements Command {
         req.setAttribute("records_per_page", recordsPerPage);
         req.setAttribute("search_param", searchParam);
         req.setAttribute("search_field", searchField);
-        req.setAttribute("search_fields", new ArrayList<>(Arrays.asList("id", "username", "name", "surname", "email")));
+        req.setAttribute("search_fields", new ArrayList<>(Arrays.asList("number", "room type")));
         if(req.getParameter("user_id")!=null){
             req.setAttribute("user_id", req.getParameter("user_id"));
             req.setAttribute("reservation_id", req.getParameter("reservation_id"));

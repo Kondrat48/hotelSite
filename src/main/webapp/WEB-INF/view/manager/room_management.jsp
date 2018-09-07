@@ -23,6 +23,7 @@
 <jsp:include page="../menu.jsp"/>
 <fmt:bundle basename="page_strings" prefix="string.">
 
+    <c:set var="redirectParams" value="reservation_id=${reservation_id}"/>
     <c:if test="${not empty user_id}">
         <h2><fmt:message key="user_room_selecting"/></h2>
     </c:if>
@@ -34,7 +35,7 @@
                 <th class="align-middle"></th>
             </c:if>
             <th class="align-middle">
-                <a class="btn btn-success w-100" href="<c:url value="/app/create_room_page"/>">
+                <a class="btn btn-success w-100" href="<c:url value="/app/create_room_page?${redirectParams}"/>">
                     <fmt:message key="create"/>
                 </a>
             </th>
@@ -43,16 +44,16 @@
             <tr>
                 <td class="align-middle">${roomDto.id}</td>
                 <td class="align-middle">${roomDto.typeName}</td>
-                <c:if test="${not empty user_id}">
+                <c:if test="${not empty reservation_id}">
                     <td class="align-middle">
                         <a class="btn btn-primary w-100"
-                           href="<c:url value="/app/edit_room_page?room_id=${roomDto.id}"/>">
+                           href="<c:url value="/app/create_confirmation?room_id=${roomDto.id}&${redirectParams}"/>">
                             <fmt:message key="select"/>
                         </a>
                     </td>
                 </c:if>
                 <td class="align-middle">
-                    <a class="btn btn-warning w-100" href="<c:url value="/app/edit_room_page?room_id=${roomDto.id}"/>">
+                    <a class="btn btn-warning w-100" href="<c:url value="/app/edit_room_page?room_id=${roomDto.id}&${redirectParams}"/>">
                         <fmt:message key="edit"/>
                     </a>
                 </td>

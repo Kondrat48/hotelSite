@@ -8,6 +8,6 @@ import java.util.Locale;
 
 public interface RoomDao extends GenericDao<Room> {
     List<Room> findAll(int currentPage, int recordsPerPage, String sortColumn, String searchParam, String searchField, Locale locale);
-
     List<Room> findAllFreeInRange(LocalDate from, LocalDate to);
+    boolean isExistId(int id);
 }

@@ -20,6 +20,11 @@ public class EditRoomPageCommand implements Command {
         )) {
             return "redirect:/app/default";
         }
+
+
+        String redirectParams = "reservation_id=" + ((req.getParameter("reservation_id") == null) ? "" : req.getParameter("reservation_id"));
+
+
         int roomId = Integer.parseInt(req.getParameter("room_id"));
         RoomService roomService = new RoomService(
                 req.getParameter("language") == null ?
@@ -27,8 +32,12 @@ public class EditRoomPageCommand implements Command {
                         req.getParameter("language")
         );
         req.setAttribute("roomDto", new RoomDto(roomService.getRoomById(roomId)));
-        req.setAttribute("roomTypes", new RoomTypeService().getAllTypes());
+        req.setAttribute("roomTypes", new RoomTypeService(
+                req.getParameter("language") == null ?
+                        req.getSession().getAttribute("language").toString() :
+                        req.getParameter("language")
+        ).getAllTypes());
 
-        return manager.getProperty("path.page.edit_room_page");
+        return manager.getProperty("path.page.edit_room")+"?"+redirectParams;
     }
 }

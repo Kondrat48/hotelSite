@@ -3,9 +3,7 @@ package ua.training.model.dao.impl;
 import ua.training.model.dao.RoomDao;
 import ua.training.model.dao.mapper.RoomTypeMapper;
 import ua.training.model.dao.mapper.RoomMapper;
-import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.entity.Room;
-import ua.training.model.entity.User;
 import ua.training.model.service.resourceManager.DBQueryManager;
 
 import java.sql.*;
@@ -22,7 +20,14 @@ public class JDBCRoomDao implements RoomDao {
 
     @Override
     public void create(Room entity) {
-        String query = "";
+        DBQueryManager queryManager = new DBQueryManager();
+        try (PreparedStatement st = connection.prepareStatement(queryManager.getProperty("sql.insert.room"))){
+            st.setInt(1,entity.getId());
+            st.setInt(2,entity.getRoomType().getId());
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -87,7 +92,13 @@ public class JDBCRoomDao implements RoomDao {
 
     @Override
     public void delete(int id) {
-        String query = "";
+        DBQueryManager queryManager = new DBQueryManager();
+        try(PreparedStatement st = connection.prepareStatement(queryManager.getProperty("sql.delete.room.by_id"))){
+            st.setInt(1,id);
+            st.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -134,6 +145,22 @@ public class JDBCRoomDao implements RoomDao {
 //        }
 
         return /*resultList*/null;
+    }
+
+    @Override
+    public boolean isExistId(int id) {
+        DBQueryManager manager = new DBQueryManager();
+        try (PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.count.rooms.by_id"))) {
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("total");
+            }
+            return count > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

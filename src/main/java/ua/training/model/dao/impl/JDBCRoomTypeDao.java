@@ -1,11 +1,9 @@
 package ua.training.model.dao.impl;
 
-import com.mysql.cj.xdevapi.Collection;
 import ua.training.model.dao.RoomTypeDao;
 import ua.training.model.dao.mapper.RoomTypeMapper;
 import ua.training.model.entity.RoomType;
 import ua.training.model.exception.UnsuccessfulSqlOperationException;
-import ua.training.model.service.RoomTypeService;
 import ua.training.model.service.resourceManager.DBQueryManager;
 
 import java.sql.Connection;
@@ -18,14 +16,14 @@ import java.util.Locale;
 
 public class JDBCRoomTypeDao implements RoomTypeDao {
     private final Connection connection;
-    
+
     public JDBCRoomTypeDao(Connection connection) {
         this.connection = connection;
     }
 
     @Override
     public void create(RoomType entity) {
-        
+
     }
 
     @Override
@@ -37,7 +35,7 @@ public class JDBCRoomTypeDao implements RoomTypeDao {
     public List<RoomType> findAll(int currentPage, int recordsPerPage, String sortColumn, String searchParam, String searchField) {
         return null;
     }
-    
+
     @Override
     public List<RoomType> findAll(Locale locale) {
         DBQueryManager queryManager = new DBQueryManager();
@@ -55,12 +53,28 @@ public class JDBCRoomTypeDao implements RoomTypeDao {
     }
 
     @Override
+    public boolean isExistId(int id) {
+        DBQueryManager manager = new DBQueryManager();
+        try (PreparedStatement st = connection.prepareStatement(manager.getProperty("sql.count.room_types.by_id"))) {
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("total");
+            }
+            return count > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public int getNumberOfRows(String searchParam, String searchField) {
         return 0;
     }
 
     @Override
-    public void update(RoomType entity) throws UnsuccessfulSqlOperationException {
+    public void update(RoomType entity) {
 
     }
 

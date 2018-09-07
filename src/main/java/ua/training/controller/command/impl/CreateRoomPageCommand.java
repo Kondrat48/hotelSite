@@ -19,8 +19,16 @@ public class CreateRoomPageCommand implements Command {
             return "redirect:/app/default";
         }
 
-        req.setAttribute("roomTypes", new RoomTypeService().getAllTypes());
 
-        return manager.getProperty("path.page.create_room_page");
+        String redirectParams = "reservation_id=" + ((req.getParameter("reservation_id") == null) ? "" : req.getParameter("reservation_id"));
+
+
+        req.setAttribute("roomTypes", new RoomTypeService(
+                req.getParameter("language") == null ?
+                        req.getSession().getAttribute("language").toString() :
+                        req.getParameter("language")
+        ).getAllTypes());
+
+        return manager.getProperty("path.page.create_room") + "?" + redirectParams;
     }
 }

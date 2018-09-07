@@ -8,4 +8,5 @@ import java.util.Locale;
 public interface RoomTypeDao extends GenericDao<RoomType> {
 
     List<RoomType> findAll(Locale locale);
+    boolean isExistId(int id);
 }

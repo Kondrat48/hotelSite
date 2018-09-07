@@ -13,6 +13,10 @@
     <fmt:bundle basename="page_strings" prefix="string.">
         <title><fmt:message key="create_room_title"/></title>
     </fmt:bundle>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="../menu.jsp"/>
@@ -20,27 +24,27 @@
 <fmt:bundle basename="page_strings" prefix="string.">
     <div class="container">
         <div class="col col-md-8 col-lg-6 offset-md-2 offset-lg-3">
-            <form role="form" method="post" action="${pageContext.request.contextPath}/app/edit_room">
-                <h2 class="form-heading"><fmt:message key="edit_room"/></h2>
-                <input type="hidden" name="old_room_id" value="${userDao.number}"/>
+            <form role="form" method="post" action="<c:url value="/app/create_room"/>">
+                <input type="hidden" value="${reservation_id}" name="reservation_id">
+                <h2 class="form-heading"><fmt:message key="create_room"/></h2>
                 <table class="w-100">
                     <tr>
                         <td>
                             <fmt:message key="number"/>:
                         </td>
                         <td>
-                            <input type="number" name="room_id" class="form-control" required autofocus>
-                                ${existnumber}
-                                ${wrongnumber}
+                            <input type="number" name="room_id" class="form-control" value="${room_id}" required autofocus>
+                                ${existroom}
                         </td>
                         <td>
                             <select class="custom-select-sm form-control" name="room_type_id">
                                 <c:forEach var="roomType" items="${roomTypes}">
-                                    <option value="${roomType.id}">roomType.name</option>
+                                    <option value="${roomType.id}"${roomType.id==room_type_id?' selected':''}>${roomType.typeName}</option>
                                 </c:forEach>
                                 <option value="other"><fmt:message key="other"/></option>
                             </select>
                                 ${notexistroomtype}
+                                ${wrongnumber}
                         </td>
                     </tr>
 

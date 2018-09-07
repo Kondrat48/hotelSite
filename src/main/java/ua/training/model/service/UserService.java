@@ -43,7 +43,7 @@ public class UserService {
         userDao.create(user);
     }
 
-    public void updateUser(User user, String old_username) throws UnsuccessfulSqlOperationException {
+    public void updateUser(User user, String old_username) {
         User oldUser = userDao.getByLogin(old_username);
         user.setId(oldUser.getId());
         if(user.getRole()==null)user.setRole(oldUser.getRole());

@@ -1,4 +1,4 @@
 package ua.training.model.exception;
 
-public class UnsuccessfulSqlOperationException extends Exception {
+public class UnsuccessfulSqlOperationException extends RuntimeException {
 }

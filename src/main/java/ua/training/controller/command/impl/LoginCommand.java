@@ -23,7 +23,9 @@ public class LoginCommand implements Command {
             return "redirect:/app/default";
         }
 
-        Locale locale = new Locale((String) req.getSession().getAttribute("language"));
+        Locale locale = new Locale(req.getParameter("language") == null ?
+                req.getSession().getAttribute("language").toString() :
+                req.getParameter("language"));
         RegexpUtil regexUtil = new RegexpUtil(locale);
         UserService userService = new UserService();
 
